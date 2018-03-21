@@ -23,7 +23,7 @@ hs_err_pid*
 /.metadata/
 
 
-#Server and Eclipse files
-/.recommenders/
-/Servers/
-/RemoteSystemsTempFiles/
+# Server and Eclipse files
+.recommenders/
+Servers/
+RemoteSystemsTempFiles/
