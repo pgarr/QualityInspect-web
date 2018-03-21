@@ -24,6 +24,6 @@ hs_err_pid*
 
 
 # Server and Eclipse files
-.recommenders/
-Servers/
-RemoteSystemsTempFiles/
+/.recommenders/
+/Servers/
+/RemoteSystemsTempFiles/
