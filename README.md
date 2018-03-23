@@ -11,13 +11,13 @@ TODOs
 Forms:
 1. List
 -filter/sort
+-new form
 2. New form
 -add new object type
--add steps
+-add/remove steps
 3. Existing form
--view
 -archive (not visible for new inspection)
--clone
+-clone (to new)
 
 Insepctions:
 1. List
@@ -27,6 +27,6 @@ Insepctions:
 -rate steps
 -add pictures
 -confirm (complete)
--reopen
+-reopen (uncopleted)
 -delete
 
