@@ -8,4 +8,6 @@ public interface FormService {
 
 	public List<Form> getForms();
 
+	public Form getForm(int id);
+
 }

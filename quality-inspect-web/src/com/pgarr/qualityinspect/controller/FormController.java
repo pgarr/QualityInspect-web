@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pgarr.qualityinspect.entity.Form;
 import com.pgarr.qualityinspect.service.FormService;
@@ -26,6 +27,16 @@ public class FormController {
 		model.addAttribute("forms", forms);
 
 		return "list-forms";
+	}
+
+	@GetMapping("/view")
+	public String viewForm(@RequestParam("formId") int id, Model model) {
+
+		Form form = formService.getForm(id);
+
+		model.addAttribute("form", form);
+
+		return "form-view";
 	}
 
 }
