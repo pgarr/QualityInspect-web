@@ -8,37 +8,50 @@
 <head>
 
 <title>List Forms</title>
+
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 
 <body>
+	<div id="wrapper">
+		<div id="header">
+			<h2>Quality Inspect</h2>
+		</div>
+	</div>
 
-	<h2>Quality Inspect</h2>
-	<br>
-	<h3>Forms list</h3>
+	<div id="container">
+		<div id="content">
 
-	<table>
-		<tr>
-			<th>Object type</th>
-			<th>Form</th>
-			<th>Description</th>
-			<th>Action</th>
-		</tr>
+			<h3>Forms list</h3>
 
-		<c:forEach var="tempForm" items="${forms}">
+			<input type="button" value="New Form"
+				onclick="window.location.href='selectItem'; return false;"
+				class="button" />
 
-			<c:url var="viewLink" value="/form/view">
-				<c:param name="formId" value="${tempForm.id}" />
-			</c:url>
+			<table>
+				<tr>
+					<th>Item type</th>
+					<th>Form</th>
+					<th>Description</th>
+				</tr>
 
-			<tr>
-				<td>${tempForm.object.name}</td>
-				<td>${tempForm.name}</td>
-				<td>${tempForm.description}</td>
-				<td><a href="${viewLink}">View</a></td>
-			</tr>
-		</c:forEach>
+				<c:forEach var="tempForm" items="${forms}">
 
-	</table>
+					<c:url var="viewLink" value="/form/view">
+						<c:param name="formId" value="${tempForm.id}" />
+					</c:url>
+
+					<tr>
+						<td>${tempForm.item.name}</td>
+						<td><a href="${viewLink}">${tempForm.name}</a></td>
+						<td>${tempForm.description}</td>
+					</tr>
+				</c:forEach>
+
+			</table>
+		</div>
+	</div>
 
 </body>
 

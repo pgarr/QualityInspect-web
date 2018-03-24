@@ -10,4 +10,6 @@ public interface FormDAO {
 
 	public Form getForm(int id);
 
+	public void saveForm(Form form);
+
 }

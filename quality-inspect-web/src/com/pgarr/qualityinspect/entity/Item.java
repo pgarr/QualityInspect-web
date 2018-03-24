@@ -16,8 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "object")
-public class Object {
+@Table(name = "item")
+public class Item {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,20 +27,20 @@ public class Object {
 	@Column(name = "name")
 	private String name;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "object_detail_id")
-	private ObjectDetail objectDetail;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "item_detail_id")
+	private ItemDetail itemDetail;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "object", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
 	private List<Form> forms;
 
-	public Object() {
+	public Item() {
 
 	}
 
-	public Object(String name, ObjectDetail objectDetail) {
+	public Item(String name, ItemDetail itemDetail) {
 		this.name = name;
-		this.objectDetail = objectDetail;
+		this.itemDetail = itemDetail;
 	}
 
 	public int getId() {
@@ -59,12 +59,12 @@ public class Object {
 		this.name = name;
 	}
 
-	public ObjectDetail getObjectDetail() {
-		return objectDetail;
+	public ItemDetail getItemDetail() {
+		return itemDetail;
 	}
 
-	public void setObjectDetail(ObjectDetail objectDetail) {
-		this.objectDetail = objectDetail;
+	public void setItemDetail(ItemDetail itemDetail) {
+		this.itemDetail = itemDetail;
 	}
 
 	public List<Form> getForms() {
@@ -85,7 +85,7 @@ public class Object {
 
 	@Override
 	public String toString() {
-		return "Object [id=" + id + ", name" + name + "objectDetail=" + objectDetail + "]";
+		return "Item [id=" + id + ", name=" + name + ", itemDetail=" + itemDetail + "]";
 	}
 
 }

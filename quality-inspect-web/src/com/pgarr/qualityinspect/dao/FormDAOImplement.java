@@ -35,11 +35,17 @@ public class FormDAOImplement implements FormDAO {
 
 		Form form = session.get(Form.class, id);
 
-		System.out.println(form.getObject().getObjectDetail());
+		System.out.println(form.getItem().getItemDetail());
 
 		System.out.println(form.getSteps());
 
 		return form;
+	}
+
+	@Override
+	public void saveForm(Form form) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

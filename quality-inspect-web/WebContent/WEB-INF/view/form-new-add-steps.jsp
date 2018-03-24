@@ -4,7 +4,7 @@
 <html>
 
 <head>
-<title>View Form</title>
+<title>Add Steps To New Form</title>
 
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
@@ -20,13 +20,12 @@
 	<div id="container">
 		<div id="content">
 
-			<h3>Form</h3>
+			<h3>New Form</h3>
 
 			<table>
-
 				<tr>
 					<th>Item type:</th>
-					<td>${form.item.name}</td>
+					<td>${form.itemId}</td>
 				</tr>
 
 				<tr>
@@ -61,7 +60,7 @@
 					<th>Details</th>
 				</tr>
 
-				<c:forEach var="tempStep" items="${form.steps}">
+				<%-- 				<c:forEach var="tempStep" items="${form.steps}">
 					<tr>
 						<td>${tempStep.number}</td>
 						<td>${tempStep.description}</td>
@@ -69,7 +68,23 @@
 					</tr>
 
 
+				</c:forEach> --%>
+
+
+
+				<%-- 		<table>
+	
+				<c:forEach var="tempStep" items="${form.steps}">
+					<tr>
+						<td><form:input path="tempStep.number" /></td>
+						<td><form:input path="tempStep.description" /></td>
+						<td><form:input path="tempStep.details" /></td>
+					</tr>
+
+
 				</c:forEach>
+			</table> --%>
+
 			</table>
 
 		</div>

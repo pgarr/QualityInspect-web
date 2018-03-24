@@ -30,7 +30,7 @@ public class Step {
 	}
 
 	public Step(String description, String details, int number) {
-		super();
+
 		this.description = description;
 		this.details = details;
 		this.number = number;

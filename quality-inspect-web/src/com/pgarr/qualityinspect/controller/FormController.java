@@ -1,16 +1,25 @@
 package com.pgarr.qualityinspect.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pgarr.qualityinspect.entity.Form;
+import com.pgarr.qualityinspect.entity.Item;
+import com.pgarr.qualityinspect.entity.Step;
 import com.pgarr.qualityinspect.service.FormService;
+import com.pgarr.qualityinspect.service.ItemService;
 
 @Controller
 @RequestMapping("/form")
@@ -18,6 +27,9 @@ public class FormController {
 
 	@Autowired
 	private FormService formService;
+
+	@Autowired
+	private ItemService itemService;
 
 	@GetMapping("/list")
 	public String listForms(Model model) {
@@ -37,6 +49,50 @@ public class FormController {
 		model.addAttribute("form", form);
 
 		return "form-view";
+	}
+
+	@GetMapping("/newForm")
+	public String newForm(Model model) {
+
+		Form form = new Form();
+
+		model.addAttribute("form", form);
+
+		return "form-new";
+	}
+
+	@GetMapping("selectItem")
+	public String selectItem(Model model) {
+
+		List<Item> items = itemService.getItems();
+
+		Map<Integer, String> itemsMap = items.stream().collect(Collectors.toMap(Item::getId, Item::getName));
+
+		model.addAttribute("itemsMap", itemsMap);
+
+		return "form-new-select-item";
+	}
+
+	@PostMapping("/addSteps")
+	public String addSteps(@ModelAttribute("form") Form form, Model model) {
+
+		System.out.println(form);
+
+		List<Step> steps = new ArrayList<Step>();
+		steps.add(new Step());
+
+		model.addAttribute("form", form);
+		model.addAttribute("steps", steps);
+
+		return "form-new-add-steps";
+	}
+
+	@PostMapping("/saveForm")
+	public String saveForm(@ModelAttribute("form") Form form) {
+
+		formService.saveForm(form);
+
+		return "redirect:/form/list";
 	}
 
 }

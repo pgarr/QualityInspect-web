@@ -13,7 +13,7 @@ Forms:
 -filter/sort
 -new form
 2. New form
--add new object type
+-add new item type
 -add/remove steps
 3. Existing form
 -archive (not visible for new inspection)

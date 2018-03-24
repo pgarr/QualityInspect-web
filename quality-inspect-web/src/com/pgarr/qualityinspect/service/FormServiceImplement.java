@@ -13,20 +13,27 @@ import com.pgarr.qualityinspect.entity.Form;
 public class FormServiceImplement implements FormService {
 
 	@Autowired
-	private FormDAO customerDAO;
+	private FormDAO formDAO;
 
 	@Override
 	@Transactional
 	public List<Form> getForms() {
 
-		return customerDAO.getForms();
+		return formDAO.getForms();
 	}
 
 	@Override
 	@Transactional
 	public Form getForm(int id) {
 
-		return customerDAO.getForm(id);
+		return formDAO.getForm(id);
+	}
+
+	@Override
+	@Transactional
+	public void saveForm(Form form) {
+
+		formDAO.saveForm(form);
 	}
 
 }

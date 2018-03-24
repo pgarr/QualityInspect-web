@@ -32,8 +32,8 @@ public class Form {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
 			CascadeType.REFRESH })
-	@JoinColumn(name = "object_id")
-	private Object object;
+	@JoinColumn(name = "item_id")
+	private Item item;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "form_id")
@@ -73,12 +73,12 @@ public class Form {
 		this.description = description;
 	}
 
-	public Object getObject() {
-		return object;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setObject(Object object) {
-		this.object = object;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public List<Step> getSteps() {

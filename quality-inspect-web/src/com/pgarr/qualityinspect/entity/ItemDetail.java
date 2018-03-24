@@ -10,8 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "object_detail")
-public class ObjectDetail {
+@Table(name = "item_detail")
+public class ItemDetail {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,18 +24,18 @@ public class ObjectDetail {
 	@Column(name = "description")
 	private String description;
 
-	@OneToOne(mappedBy = "objectDetail", cascade = CascadeType.ALL)
-	private Object object;
+	@OneToOne(mappedBy = "itemDetail", cascade = CascadeType.ALL)
+	private Item item;
 
-	public ObjectDetail() {
+	public ItemDetail() {
 
 	}
 
-	public ObjectDetail(String maker, String description, Object object) {
+	public ItemDetail(String maker, String description, Item item) {
 
 		this.maker = maker;
 		this.description = description;
-		this.object = object;
+		this.item = item;
 	}
 
 	public int getId() {
@@ -62,17 +62,17 @@ public class ObjectDetail {
 		this.description = description;
 	}
 
-	public Object getObject() {
-		return object;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setObject(Object object) {
-		this.object = object;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	@Override
 	public String toString() {
-		return "ObjectDetail [id=" + id + ", maker" + maker + "description=" + description + "]";
+		return "ItemDetail [id=" + id + ", maker=" + maker + ", description=" + description + "]";
 	}
 
 }
