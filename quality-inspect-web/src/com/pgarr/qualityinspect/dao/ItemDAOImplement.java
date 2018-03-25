@@ -28,4 +28,22 @@ public class ItemDAOImplement implements ItemDAO {
 		return items;
 	}
 
+	@Override
+	public Item getItem(int itemId) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		Item item = session.get(Item.class, itemId);
+
+		return item;
+	}
+
+	@Override
+	public void saveItem(Item item) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		session.save(item);
+	}
+
 }

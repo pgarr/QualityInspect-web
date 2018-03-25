@@ -22,4 +22,18 @@ public class ItemServiceImplement implements ItemService {
 		return itemDAO.getItems();
 	}
 
+	@Override
+	@Transactional
+	public Item getItem(int itemId) {
+
+		return itemDAO.getItem(itemId);
+	}
+
+	@Override
+	@Transactional
+	public void saveItem(Item item) {
+
+		itemDAO.saveItem(item);
+	}
+
 }

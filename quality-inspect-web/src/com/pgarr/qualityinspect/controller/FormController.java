@@ -51,24 +51,29 @@ public class FormController {
 		return "form-view";
 	}
 
-	@GetMapping("/newForm")
-	public String newForm(Model model) {
+	@PostMapping("/newForm")
+	public String newForm(@RequestParam("itemId") int itemId, Model model) {
 
 		Form form = new Form();
+		Item item = itemService.getItem(itemId);
+
+		form.setItem(item);
 
 		model.addAttribute("form", form);
 
 		return "form-new";
 	}
 
-	@GetMapping("selectItem")
+	@GetMapping("/selectItem")
 	public String selectItem(Model model) {
 
 		List<Item> items = itemService.getItems();
-
 		Map<Integer, String> itemsMap = items.stream().collect(Collectors.toMap(Item::getId, Item::getName));
 
 		model.addAttribute("itemsMap", itemsMap);
+
+		int itemId = 0;
+		model.addAttribute("itemId", itemId);
 
 		return "form-new-select-item";
 	}
