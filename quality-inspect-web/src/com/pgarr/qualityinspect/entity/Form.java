@@ -14,9 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "form")
+@Table(name = "form", uniqueConstraints = @UniqueConstraint(name = "FORM_UNIQUE", columnNames = { "name", "item_id" }))
 public class Form {
 
 	@Id

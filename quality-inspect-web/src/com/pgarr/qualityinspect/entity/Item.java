@@ -24,7 +24,7 @@ public class Item {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "name")
+	@Column(name = "name", unique = true)
 	private String name;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
