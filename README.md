@@ -9,11 +9,10 @@ This is moved from QualityInspect - desktop app.
 
 TODOs
 Forms:
-1. List
+1. Object list
 -filter/sort
--new form
-2. New form
--add new item type
+2. Object - Form list
+3. New form
 -add/remove steps
 3. Existing form
 -archive (not visible for new inspection)
@@ -26,7 +25,7 @@ Insepctions:
 2. Inspection details
 -rate steps
 -add pictures
--confirm (complete)
--reopen (uncopleted)
+-confirm (complete - non editable)
+-reopen (editable)
 -delete
 
