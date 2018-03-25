@@ -8,19 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pgarr.qualityinspect.dao.FormDAO;
 import com.pgarr.qualityinspect.entity.Form;
+import com.pgarr.qualityinspect.entity.Item;
 
 @Service
 public class FormServiceImplement implements FormService {
 
 	@Autowired
 	private FormDAO formDAO;
-
-	@Override
-	@Transactional
-	public List<Form> getForms() {
-
-		return formDAO.getForms();
-	}
 
 	@Override
 	@Transactional
@@ -34,6 +28,20 @@ public class FormServiceImplement implements FormService {
 	public void saveForm(Form form) {
 
 		formDAO.saveForm(form);
+	}
+
+	@Override
+	@Transactional
+	public List<Form> getForms() {
+
+		return formDAO.getForms();
+	}
+
+	@Override
+	@Transactional
+	public List<Form> getItemForms(Item item) {
+
+		return formDAO.getItemForms(item);
 	}
 
 }

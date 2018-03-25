@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.pgarr.qualityinspect.entity.Item;
 import com.pgarr.qualityinspect.service.ItemService;
 
@@ -29,16 +27,6 @@ public class ItemController {
 		model.addAttribute("items", items);
 
 		return "item-list";
-	}
-
-	@GetMapping("/viewForms")
-	public String viewItem(@RequestParam("itemId") int id, Model model) {
-
-		Item item = itemService.getItem(id);
-
-		model.addAttribute("item", item);
-
-		return "redirect:/form/list";
 	}
 
 	@GetMapping("/newItem")

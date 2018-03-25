@@ -7,7 +7,7 @@
 
 <head>
 
-<title>List Forms</title>
+<title>Forms List</title>
 
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
@@ -25,13 +25,31 @@
 
 			<h3>Forms list</h3>
 
-			<input type="button" value="New Form"
-				onclick="window.location.href='selectItem'; return false;"
+			<table>
+
+				<tr>
+					<td><label>Item name:</label></td>
+					<td>${item.name}</td>
+				</tr>
+
+				<tr>
+					<td><label>Maker:</label></td>
+					<td>${item.itemDetail.maker}</td>
+				</tr>
+
+				<tr>
+					<td><label>Description:</label></td>
+					<td>${item.itemDetail.description}</td>
+				</tr>
+
+			</table>
+
+			<br> <input type="button" value="New Form"
+				onclick="window.location.href='newForm'; return false;"
 				class="button" />
 
 			<table>
 				<tr>
-					<th>Item type</th>
 					<th>Form</th>
 					<th>Description</th>
 				</tr>
@@ -43,7 +61,6 @@
 					</c:url>
 
 					<tr>
-						<td>${tempForm.item.name}</td>
 						<td><a href="${viewLink}">${tempForm.name}</a></td>
 						<td>${tempForm.description}</td>
 					</tr>

@@ -39,7 +39,7 @@
 
 				<c:forEach var="tempItem" items="${items}">
 
-					<c:url var="viewLink" value="/item/viewForms">
+					<c:url var="viewFormsLink" value="/form/itemForms">
 						<c:param name="itemId" value="${tempItem.id}" />
 					</c:url>
 
@@ -47,7 +47,7 @@
 						<td>${tempItem.name}</td>
 						<td>${tempItem.itemDetail.maker}</td>
 						<td>${tempItem.itemDetail.description}</td>
-						<td><a href="${viewLink}">Show Forms</a></td>
+						<td><a href="${viewFormsLink}">Show Forms</a></td>
 					</tr>
 				</c:forEach>
 

@@ -1,5 +1,6 @@
 package com.pgarr.qualityinspect.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pgarr.qualityinspect.entity.Form;
+import com.pgarr.qualityinspect.entity.Item;
 
 @Repository
 public class FormDAOImplement implements FormDAO {
@@ -17,25 +19,11 @@ public class FormDAOImplement implements FormDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<Form> getForms() {
-
-		Session session = sessionFactory.getCurrentSession();
-
-		Query<Form> query = session.createQuery("from Form", Form.class);
-
-		List<Form> forms = query.getResultList();
-
-		return forms;
-	}
-
-	@Override
 	public Form getForm(int id) {
 
 		Session session = sessionFactory.getCurrentSession();
 
 		Form form = session.get(Form.class, id);
-
-		System.out.println(form.getItem().getItemDetail());
 
 		System.out.println(form.getSteps());
 
@@ -44,8 +32,37 @@ public class FormDAOImplement implements FormDAO {
 
 	@Override
 	public void saveForm(Form form) {
-		// TODO Auto-generated method stub
 
+		Session session = sessionFactory.getCurrentSession();
+
+		session.save(form);
+
+	}
+
+	@Override
+	public List<Form> getForms() {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		Query<Form> query = session.createQuery("from Form order by name", Form.class);
+
+		List<Form> forms = query.getResultList();
+
+		return forms;
+	}
+
+	@Override
+	public List<Form> getItemForms(Item item) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		Query<Form> query = session.createQuery("from Form where item=:item order by name", Form.class);
+
+		query.setParameter("item", item);
+
+		List<Form> forms = query.getResultList();
+
+		return forms;
 	}
 
 }
