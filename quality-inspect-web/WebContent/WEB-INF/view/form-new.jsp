@@ -24,14 +24,31 @@
 			<h3>New Form</h3>
 		</div>
 
-		<form:form action="addSteps" modelAttribute="form" method="POST">
+		<table>
+
+			<tr>
+				<td><label>Item name:</label></td>
+				<td>${form.item.name}</td>
+			</tr>
+
+			<tr>
+				<td><label>Maker:</label></td>
+				<td>${form.item.itemDetail.maker}</td>
+			</tr>
+
+			<tr>
+				<td><label>Description:</label></td>
+				<td>${form.item.itemDetail.description}</td>
+			</tr>
+
+		</table>
+
+		<br>
+
+		<form:form action="saveForm" modelAttribute="form" method="POST">
 
 			<table>
 				<tbody>
-					<tr>
-						<td><label>Item type:</label></td>
-						<td><form:select path="itemId" items="${itemsMap}" /></td>
-					</tr>
 
 					<tr>
 						<td><label>Form name:</label></td>
@@ -49,6 +66,26 @@
 					</tr>
 
 				</tbody>
+			</table>
+
+			<br>
+
+			<table>
+				<tr>
+					<th>Number</th>
+					<th>Description</th>
+					<th>Details</th>
+				</tr>
+
+				<c:forEach var="step" items="${form.steps}" varStatus="status">
+					<tr>
+						<td>${step.number}</td>
+						<td><form:input path="steps[${status.index}].description" /></td>
+						<td><form:input path="steps[${status.index}].details" /></td>
+					</tr>
+
+
+				</c:forEach>
 			</table>
 
 		</form:form>

@@ -55,12 +55,17 @@ public class FormController {
 	}
 
 	@GetMapping("/newForm")
-	public String newForm(@RequestParam("itemId") int itemId, Model model) {
+	public String newForm(@ModelAttribute("item") Item item, Model model) {
 
 		Form form = new Form();
-		Item item = itemService.getItem(itemId);
 
 		form.setItem(item);
+
+		Step step = new Step();
+		step.setNumber(1);
+		form.addStep(step);
+
+		System.out.println(form);
 
 		model.addAttribute("form", form);
 
@@ -73,7 +78,10 @@ public class FormController {
 		System.out.println(form);
 
 		List<Step> steps = new ArrayList<Step>();
-		steps.add(new Step());
+
+		Step step = new Step();
+		step.setNumber(1);
+		steps.add(step);
 
 		model.addAttribute("form", form);
 		model.addAttribute("steps", steps);
