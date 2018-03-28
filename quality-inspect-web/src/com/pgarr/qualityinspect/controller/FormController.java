@@ -49,7 +49,7 @@ public class FormController {
 		return "form-view";
 	}
 
-	@GetMapping("/newForm")
+	@RequestMapping("/newForm")
 	public String newForm(@RequestParam("itemId") int itemId, Model model) {
 
 		Item item = itemService.getItem(itemId);

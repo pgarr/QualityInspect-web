@@ -27,7 +27,6 @@
 
 
 		<form:form action="saveForm" modelAttribute="form" method="POST">
-			<form:hidden path="${form.item.id}" />
 
 			<table>
 
@@ -46,8 +45,7 @@
 					<td>${form.item.itemDetail.description}</td>
 				</tr>
 
-				<form:hidden path="${form.item.id}" />
-				<form:hidden path="${form.item.name}" />
+				<form:hidden path="item.id" />
 
 			</table>
 
