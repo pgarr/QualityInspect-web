@@ -34,6 +34,8 @@ public class FormDAOImplement implements FormDAO {
 
 		Session session = sessionFactory.getCurrentSession();
 
+		System.out.println(form);
+
 		session.save(form);
 
 	}

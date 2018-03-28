@@ -1,11 +1,6 @@
 package com.pgarr.qualityinspect.controller;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +50,9 @@ public class FormController {
 	}
 
 	@GetMapping("/newForm")
-	public String newForm(@ModelAttribute("item") Item item, Model model) {
+	public String newForm(@RequestParam("itemId") int itemId, Model model) {
+
+		Item item = itemService.getItem(itemId);
 
 		Form form = new Form();
 
@@ -72,21 +69,15 @@ public class FormController {
 		return "form-new";
 	}
 
-	@PostMapping("/addSteps")
+	@PostMapping("/addStep")
 	public String addSteps(@ModelAttribute("form") Form form, Model model) {
 
-		System.out.println(form);
-
-		List<Step> steps = new ArrayList<Step>();
-
 		Step step = new Step();
-		step.setNumber(1);
-		steps.add(step);
+		form.addStep(step);
 
 		model.addAttribute("form", form);
-		model.addAttribute("steps", steps);
 
-		return "form-new-add-steps";
+		return "form-new";
 	}
 
 	@PostMapping("/saveForm")
@@ -94,7 +85,7 @@ public class FormController {
 
 		formService.saveForm(form);
 
-		return "redirect:/form/list";
+		return "redirect:/item/list";
 	}
 
 }

@@ -24,28 +24,34 @@
 			<h3>New Form</h3>
 		</div>
 
-		<table>
 
-			<tr>
-				<td><label>Item name:</label></td>
-				<td>${form.item.name}</td>
-			</tr>
-
-			<tr>
-				<td><label>Maker:</label></td>
-				<td>${form.item.itemDetail.maker}</td>
-			</tr>
-
-			<tr>
-				<td><label>Description:</label></td>
-				<td>${form.item.itemDetail.description}</td>
-			</tr>
-
-		</table>
-
-		<br>
 
 		<form:form action="saveForm" modelAttribute="form" method="POST">
+			<form:hidden path="${form.item.id}" />
+
+			<table>
+
+				<tr>
+					<td><label>Item name:</label></td>
+					<td>${form.item.name}</td>
+				</tr>
+
+				<tr>
+					<td><label>Maker:</label></td>
+					<td>${form.item.itemDetail.maker}</td>
+				</tr>
+
+				<tr>
+					<td><label>Description:</label></td>
+					<td>${form.item.itemDetail.description}</td>
+				</tr>
+
+				<form:hidden path="${form.item.id}" />
+				<form:hidden path="${form.item.name}" />
+
+			</table>
+
+			<br>
 
 			<table>
 				<tbody>
@@ -78,6 +84,7 @@
 				</tr>
 
 				<c:forEach var="step" items="${form.steps}" varStatus="status">
+					<form:hidden path="steps[${status.index}].number" />
 					<tr>
 						<td>${step.number}</td>
 						<td><form:input path="steps[${status.index}].description" /></td>

@@ -44,9 +44,11 @@
 
 			</table>
 
-			<br> <input type="button" value="New Form"
-				onclick="window.location.href='newForm'; return false;"
-				class="button" />
+			<c:url var="newFormLink" value="/form/newForm">
+				<c:param name="itemId" value="${item.id}" />
+			</c:url>
+
+			<a href="${newFormLink}">New Form</a> <br>
 
 			<table>
 				<tr>
