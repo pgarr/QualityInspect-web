@@ -96,6 +96,13 @@ public class Form {
 			steps = new ArrayList<Step>();
 
 		steps.add(step);
+
+		int counter = 1;
+
+		for (Step theStep : steps) {
+			theStep.setNumber(counter);
+			counter++;
+		}
 	}
 
 	@Override

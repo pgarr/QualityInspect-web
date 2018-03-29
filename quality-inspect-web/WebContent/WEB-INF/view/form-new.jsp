@@ -26,33 +26,19 @@
 
 
 
-		<form:form action="saveForm" modelAttribute="form" method="POST">
-
-			<table>
-
-				<tr>
-					<td><label>Item name:</label></td>
-					<td>${form.item.name}</td>
-				</tr>
-
-				<tr>
-					<td><label>Maker:</label></td>
-					<td>${form.item.itemDetail.maker}</td>
-				</tr>
-
-				<tr>
-					<td><label>Description:</label></td>
-					<td>${form.item.itemDetail.description}</td>
-				</tr>
-
-				<form:hidden path="item.id" />
-
-			</table>
-
-			<br>
+		<form:form action="processForm" modelAttribute="form" method="POST">
 
 			<table>
 				<tbody>
+
+					<form:hidden path="item.id" />
+
+					<tr>
+						<td><label>Item name:</label></td>
+						<td>${form.item.name}</td>
+						<form:hidden path="item.name" />
+
+					</tr>
 
 					<tr>
 						<td><label>Form name:</label></td>
@@ -66,7 +52,8 @@
 
 					<tr>
 						<td><label></label></td>
-						<td><input type="submit" value="Accept" class="save" /></td>
+						<td><input type="submit" name="Save" value="Save"
+							class="save" /></td>
 					</tr>
 
 				</tbody>
@@ -79,19 +66,26 @@
 					<th>Number</th>
 					<th>Description</th>
 					<th>Details</th>
+					<th></th>
 				</tr>
 
 				<c:forEach var="step" items="${form.steps}" varStatus="status">
+
 					<form:hidden path="steps[${status.index}].number" />
+
 					<tr>
 						<td>${step.number}</td>
 						<td><form:input path="steps[${status.index}].description" /></td>
 						<td><form:input path="steps[${status.index}].details" /></td>
-					</tr>
 
+						<!--  This needs implementation -->
+						<td>REMOVE</td>
+					</tr>
 
 				</c:forEach>
 			</table>
+
+			<input type="submit" name="Add Step" value="Add Step" class="save" />
 
 		</form:form>
 	</div>

@@ -59,7 +59,6 @@ public class FormController {
 		form.setItem(item);
 
 		Step step = new Step();
-		step.setNumber(1);
 		form.addStep(step);
 
 		System.out.println(form);
@@ -69,7 +68,7 @@ public class FormController {
 		return "form-new";
 	}
 
-	@PostMapping("/addStep")
+	@PostMapping(value = "/processForm", params = "Add Step")
 	public String addSteps(@ModelAttribute("form") Form form, Model model) {
 
 		Step step = new Step();
@@ -80,7 +79,7 @@ public class FormController {
 		return "form-new";
 	}
 
-	@PostMapping("/saveForm")
+	@PostMapping(value = "/processForm", params = "Save")
 	public String saveForm(@ModelAttribute("form") Form form) {
 
 		formService.saveForm(form);
