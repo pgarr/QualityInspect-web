@@ -10,12 +10,13 @@ This is moved from QualityInspect - desktop app.
 
 2. TODOs
 - filter/sort list of objects or forms,
-- add/Remove steps to newly created form,
+- remove steps from newly created form,
 - archive existing form (not visible for new inspection),
-- clone existing form;
+- clone existing form to new one,
+- add links step back to every screen - form list, view form, new form (cancel here),
 
 - base panel of ispections - list,
-- new inspection, rate, add pictures,
+- new inspection - rate, add pictures,
 - finish new inspection (make noneditable),
 - reopen existing inspection (edit again),
 - delete inspection.
