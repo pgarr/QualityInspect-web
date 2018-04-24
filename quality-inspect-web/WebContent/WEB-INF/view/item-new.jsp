@@ -52,6 +52,10 @@
 			</table>
 
 		</form:form>
+
+		<input type="button" value="Cancel"
+			onclick="window.location.href='list'; return false;" class="button" />
+
 	</div>
 
 </body>

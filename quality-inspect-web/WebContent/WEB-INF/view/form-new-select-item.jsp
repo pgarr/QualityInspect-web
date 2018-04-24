@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<!-- This is old jsp, not used actually -->
 <!DOCTYPE html>
 <html>
 

@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- This is old jsp, not used actually -->
 <!DOCTYPE html>
 <html>
 

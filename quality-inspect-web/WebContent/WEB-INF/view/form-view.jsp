@@ -72,6 +72,12 @@
 				</c:forEach>
 			</table>
 
+			<c:url var="viewFormsLink" value="/form/itemForms">
+				<c:param name="itemId" value="${form.item.id}" />
+			</c:url>
+
+			<a href="${viewFormsLink}">Back</a>
+
 		</div>
 	</div>
 

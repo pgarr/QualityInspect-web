@@ -69,6 +69,10 @@
 				</c:forEach>
 
 			</table>
+
+			<c:url var="back" value="/item/list" />
+			<a href="${back}">Back</a>
+
 		</div>
 	</div>
 

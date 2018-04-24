@@ -88,6 +88,13 @@
 			<input type="submit" name="Add Step" value="Add Step" class="save" />
 
 		</form:form>
+
+		<c:url var="viewFormsLink" value="/form/itemForms">
+			<c:param name="itemId" value="${form.item.id}" />
+		</c:url>
+
+		<a href="${viewFormsLink}">Cancel</a>
+
 	</div>
 
 </body>
