@@ -7,6 +7,10 @@ use `quality-inspect-web`;
 SET FOREIGN_KEY_CHECKS = 0;
 
 --
+-- Forms section
+--
+
+--
 -- Table structure for table `item_detail`
 --
 
@@ -89,6 +93,97 @@ CREATE TABLE `step` (
   CONSTRAINT `FK_FORM` 
   FOREIGN KEY (`form_id`) 
   REFERENCES `form` (`id`) 
+  
+  ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+--
+-- Inspections section
+--
+
+--
+-- Table structure for table `inspection`
+--
+
+DROP TABLE IF EXISTS `inspection`;
+
+CREATE TABLE `inspection` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serial_number` varchar(45) DEFAULT NULL,
+  `creation_date`  DATE NOT NULL,
+  `creation_time` TIME NOT NULL,
+  `completion_date`  DATE DEFAULT NULL,
+  `completion_time` TIME DEFAULT NULL,
+  `inspector` varchar(80) DEFAULT NULL,
+  `place` varchar(80) DEFAULT NULL,
+  `batch` int(11) DEFAULT NULL,
+-- this should be 0 - ok, 1 - accepted, 2 or else - not ok
+  `main_result` int(1),
+  `completed` TINYINT(1),
+  `form_id` INT(11),
+  
+  PRIMARY KEY (`id`),
+  
+  UNIQUE KEY `INSPECTION_UNIQUE` (`serial_number`, `form_id`),
+  
+  KEY `FK_FORM_idx` (`form_id`),
+  
+  CONSTRAINT `FK_FORM` 
+  FOREIGN KEY (`form_id`) 
+  REFERENCES `form` (`id`) 
+  
+  ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `result`
+--
+
+DROP TABLE IF EXISTS `result`;
+
+CREATE TABLE `result` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+-- this should be 0 - ok, 1 - accepted, 2 or else - not ok
+  `result` int(1),
+  `notes` TEXT DEFAULT NULL,
+  `step_id` int(11),
+  `inspection_id` int(11),
+  
+  PRIMARY KEY (`id`),
+    
+  KEY `FK_step_idx` (`step_id`),
+  
+  CONSTRAINT `FK_STEP` 
+  FOREIGN KEY (`step_id`) 
+  REFERENCES `step` (`id`), 
+  
+  KEY `FK_inspection_idx` (`inspection_id`),
+  
+  CONSTRAINT `FK_inspection` 
+  FOREIGN KEY (`inspection_id`) 
+  REFERENCES `inspection` (`id`)
+  
+  ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `fault_picture`
+--
+
+DROP TABLE IF EXISTS `fault_picture`;
+
+CREATE TABLE `result` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_name` TEXT,
+  `result_id` int(11),
+  
+  PRIMARY KEY (`id`),
+    
+  KEY `FK_result_idx` (`result_id`),
+  
+  CONSTRAINT `FK_RESULT` 
+  FOREIGN KEY (`result_id`) 
+  REFERENCES `result` (`id`) 
   
   ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
