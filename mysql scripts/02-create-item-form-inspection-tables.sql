@@ -109,7 +109,7 @@ DROP TABLE IF EXISTS `inspection`;
 
 CREATE TABLE `inspection` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `serial_number` varchar(45) DEFAULT NULL,
+  `serial_number` varchar(45) NOT NULL,
   `creation_date`  DATE NOT NULL,
   `creation_time` TIME NOT NULL,
   `completion_date`  DATE DEFAULT NULL,
@@ -120,15 +120,15 @@ CREATE TABLE `inspection` (
 -- this should be 0 - ok, 1 - accepted, 2 or else - not ok
   `main_result` int(1),
   `completed` TINYINT(1),
-  `form_id` INT(11),
+  `form_id` INT(11) NOT NULL,
   
   PRIMARY KEY (`id`),
   
   UNIQUE KEY `INSPECTION_UNIQUE` (`serial_number`, `form_id`),
   
-  KEY `FK_FORM_idx` (`form_id`),
+  KEY `FK_INSPECT_FORM_idx` (`form_id`),
   
-  CONSTRAINT `FK_FORM` 
+  CONSTRAINT `FK_INSPECT_FORM` 
   FOREIGN KEY (`form_id`) 
   REFERENCES `form` (`id`) 
   
@@ -172,7 +172,7 @@ CREATE TABLE `result` (
 
 DROP TABLE IF EXISTS `fault_picture`;
 
-CREATE TABLE `result` (
+CREATE TABLE `fault_picture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `file_name` TEXT,
   `result_id` int(11),
@@ -192,6 +192,10 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 --
 -- sample data for items + details(2), forms(2 per item) and some steps for every form
+--
+
+--
+-- sample data for item details
 --
 
 LOCK TABLES `item_detail` WRITE;
@@ -217,7 +221,7 @@ INSERT INTO `item` VALUES
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 --
--- sample data for  forms(2 per item)
+-- sample data for forms(2 per item)
 --
 
 LOCK TABLES `form` WRITE;
@@ -249,6 +253,61 @@ INSERT INTO `step` VALUES
 	(8,'Check interior', 'Look for aliens inside', 2, 4);
 
 /*!40000 ALTER TABLE `step` ENABLE KEYS */;
+
+--
+-- sample data for inspections, results and fault pictures
+--
+
+--
+-- sample data for inspection
+--
+
+LOCK TABLES `inspection` WRITE;
+/*!40000 ALTER TABLE `inspection` DISABLE KEYS */;
+
+INSERT INTO `inspection` VALUES 
+	(1, 'Passed inspection', '2018-04-05', '12:24:12', '2018-04-05', '13:12:55', 'Inspector1', 'Poznan', 2, 0, 1, 1),
+	(2, 'Accepted inspection', '2018-04-06', '10:25:01', '2018-04-07', '13:18:05', 'Inspector2', 'Poznan', 2, 1, 1, 2),
+    (3, 'Failed inspection', '2018-04-03', '10:00:12', '2018-04-04', '13:02:55', 'Inspector1', 'Poznan', 2, 2, 1, 3),
+    (4, 'Open inspection', '2018-04-05', '11:21:11', '2018-04-05', '12:12:55', 'Inspector2', 'Poznan', 2, null, 0, 4);
+
+/*!40000 ALTER TABLE `inspection` ENABLE KEYS */;
+
+--
+-- sample data for result
+--
+
+LOCK TABLES `result` WRITE;
+/*!40000 ALTER TABLE `result` DISABLE KEYS */;
+
+INSERT INTO `result` VALUES 
+	(1, 0, null, 1, 1),
+	(2, 0, null, 2, 1),
+    (3, 1, 'not all was done', 3, 2),
+    (4, 0, null, 4, 2),
+    (5, 2, 'parameters are out of range', 5, 3),
+	(6, 1, 'fusion test completed without spectacular effects', 6, 3),
+    (7, 1, 'alien found but eliminated', 7, 4),
+    (8, null, null, 8, 4);
+    
+/*!40000 ALTER TABLE `result` ENABLE KEYS */;
+
+--
+-- sample data for fault_picture
+--
+
+LOCK TABLES `fault_picture` WRITE;
+/*!40000 ALTER TABLE `fault_picture` DISABLE KEYS */;
+
+INSERT INTO `fault_picture` VALUES 
+	(1, 'thisnotdone123', 3),
+	(2, 'parametersscreen12', 5),
+    (3, 'afterfusiontest1', 6),
+    (4, 'fusiontestdone', 6),
+    (5, 'alienbody', 7),
+    (6, 'alienweapon', 8);
+    
+/*!40000 ALTER TABLE `fault_picture` ENABLE KEYS */;
 
 UNLOCK TABLES;
 
