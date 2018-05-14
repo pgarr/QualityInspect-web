@@ -129,7 +129,7 @@ CREATE TABLE `inspection` (
   KEY `FK_INSPECT_FORM_idx` (`form_id`),
   
   CONSTRAINT `FK_INSPECT_FORM` 
-  FOREIGN KEY (`form_id`) 
+  FOREIGN KEY (`form_id`) 
   REFERENCES `form` (`id`) 
   
   ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -145,7 +145,7 @@ CREATE TABLE `result` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
 -- this should be 0 - ok, 1 - accepted, 2 or else - not ok
   `result` int(1),
-  `notes` TEXT DEFAULT NULL,
+  `note` TEXT DEFAULT NULL,
   `step_id` int(11),
   `inspection_id` int(11),
   
