@@ -1,4 +1,4 @@
 
 <%
-	response.sendRedirect("item/list");
+	response.sendRedirect("inspection/list");
 %>

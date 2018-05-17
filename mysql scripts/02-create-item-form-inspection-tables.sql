@@ -117,7 +117,7 @@ CREATE TABLE `inspection` (
   `inspector` varchar(80) DEFAULT NULL,
   `place` varchar(80) DEFAULT NULL,
   `batch` int(11) DEFAULT NULL,
--- this should be 0 - ok, 1 - accepted, 2 or else - not ok
+-- this should be 0 - empty, 1 - ok, 2 - accepted, 3 or else - not ok
   `main_result` int(1),
   `completed` TINYINT(1),
   `form_id` INT(11) NOT NULL,
@@ -129,7 +129,7 @@ CREATE TABLE `inspection` (
   KEY `FK_INSPECT_FORM_idx` (`form_id`),
   
   CONSTRAINT `FK_INSPECT_FORM` 
-  FOREIGN KEY (`form_id`) 
+  FOREIGN KEY (`form_id`)
   REFERENCES `form` (`id`) 
   
   ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -143,7 +143,7 @@ DROP TABLE IF EXISTS `result`;
 
 CREATE TABLE `result` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
--- this should be 0 - ok, 1 - accepted, 2 or else - not ok
+-- this should be 0 - empty, 1 - ok, 2 - accepted, 3 or else - not ok
   `result` int(1),
   `note` TEXT DEFAULT NULL,
   `step_id` int(11),
@@ -266,10 +266,10 @@ LOCK TABLES `inspection` WRITE;
 /*!40000 ALTER TABLE `inspection` DISABLE KEYS */;
 
 INSERT INTO `inspection` VALUES 
-	(1, 'Passed inspection', '2018-04-05', '12:24:12', '2018-04-05', '13:12:55', 'Inspector1', 'Poznan', 2, 0, 1, 1),
-	(2, 'Accepted inspection', '2018-04-06', '10:25:01', '2018-04-07', '13:18:05', 'Inspector2', 'Poznan', 2, 1, 1, 2),
-    (3, 'Failed inspection', '2018-04-03', '10:00:12', '2018-04-04', '13:02:55', 'Inspector1', 'Poznan', 2, 2, 1, 3),
-    (4, 'Open inspection', '2018-04-05', '11:21:11', '2018-04-05', '12:12:55', 'Inspector2', 'Poznan', 2, null, 0, 4);
+	(1, 'Passed inspection', '2018-04-05', '12:24:12', '2018-04-05', '13:12:55', 'Inspector1', 'Poznan', 2, 1, 1, 1),
+	(2, 'Accepted inspection', '2018-04-06', '10:25:01', '2018-04-07', '13:18:05', 'Inspector2', 'Poznan', 2, 2, 1, 2),
+    (3, 'Failed inspection', '2018-04-03', '10:00:12', '2018-04-04', '13:02:55', 'Inspector1', 'Poznan', 2, 3, 1, 3),
+    (4, 'Open inspection', '2018-04-05', '11:21:11', '2018-04-05', '12:12:55', 'Inspector2', 'Poznan', 2, 0, 0, 4);
 
 /*!40000 ALTER TABLE `inspection` ENABLE KEYS */;
 
@@ -281,14 +281,14 @@ LOCK TABLES `result` WRITE;
 /*!40000 ALTER TABLE `result` DISABLE KEYS */;
 
 INSERT INTO `result` VALUES 
-	(1, 0, null, 1, 1),
-	(2, 0, null, 2, 1),
-    (3, 1, 'not all was done', 3, 2),
-    (4, 0, null, 4, 2),
-    (5, 2, 'parameters are out of range', 5, 3),
-	(6, 1, 'fusion test completed without spectacular effects', 6, 3),
-    (7, 1, 'alien found but eliminated', 7, 4),
-    (8, null, null, 8, 4);
+	(1, 1, null, 1, 1),
+	(2, 1, null, 2, 1),
+    (3, 2, 'not all was done', 3, 2),
+    (4, 1, null, 4, 2),
+    (5, 3, 'parameters are out of range', 5, 3),
+	(6, 2, 'fusion test completed without spectacular effects', 6, 3),
+    (7, 2, 'alien found but eliminated', 7, 4),
+    (8, 0, null, 8, 4);
     
 /*!40000 ALTER TABLE `result` ENABLE KEYS */;
 
