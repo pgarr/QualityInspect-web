@@ -63,7 +63,7 @@ public class Inspection {
 	private Form form;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "result_id")
+	@JoinColumn(name = "inspection_id")
 	private List<Result> results;
 
 	public Inspection() {

@@ -25,7 +25,7 @@
 
 			<h3>Inspections list</h3>
 			<c:url var="items" value="/item/list" />
-			<a href="${items}">Manage items & forms</a>
+			<a href="${items}">Manage items and forms</a>
 
 			<table>
 				<tr>

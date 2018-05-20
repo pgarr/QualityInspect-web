@@ -2,6 +2,7 @@ package com.pgarr.qualityinspect.dao;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -29,9 +30,15 @@ public class InspectionDAOImplement implements InspectionDAO {
 	}
 
 	@Override
-	public Inspection getInspection(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Inspection getInspection(int inspectionId) {
+
+		Session session = sessionFactory.getCurrentSession();
+
+		Inspection inspection = session.get(Inspection.class, inspectionId);
+
+		Hibernate.initialize(inspection.getResults());
+
+		return inspection;
 	}
 
 	@Override

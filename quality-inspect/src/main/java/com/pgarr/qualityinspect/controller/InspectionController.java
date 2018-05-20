@@ -29,14 +29,20 @@ public class InspectionController {
 		return "inspection-list";
 	}
 
-	@GetMapping("/newInspection")
-	public String newInspection(Model model) {
+	@GetMapping("/view")
+	public String viewInspection(@RequestParam("inspectionId") int inspectionId, Model model) {
 
-		return null;
+		Inspection inspection = inspectionService.getInspection(inspectionId);
+
+		System.out.println(inspection);
+
+		model.addAttribute("inspection", inspection);
+
+		return "inspection-view";
 	}
 
-	@GetMapping("/view")
-	public String viewInspection(@RequestParam("inspectionId") int id, Model model) {
+	@GetMapping("/newInspection")
+	public String newInspection(Model model) {
 
 		return null;
 	}

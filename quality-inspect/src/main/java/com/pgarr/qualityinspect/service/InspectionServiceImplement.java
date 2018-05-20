@@ -25,8 +25,8 @@ public class InspectionServiceImplement implements InspectionService {
 	@Override
 	@Transactional
 	public Inspection getInspection(int inspectionId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return inspectionDAO.getInspection(inspectionId);
 	}
 
 	@Override
