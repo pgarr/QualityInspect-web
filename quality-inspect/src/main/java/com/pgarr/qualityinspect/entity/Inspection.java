@@ -2,6 +2,8 @@ package com.pgarr.qualityinspect.entity;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -197,6 +199,17 @@ public class Inspection {
 				+ completionTime + ", inspector=" + inspector + ", place=" + place + ", batch=" + batch
 				+ ", mainResult=" + mainResult + ", completed=" + completed + ", form=" + form + ", results=" + results
 				+ "]";
+	}
+
+	public void updateDateAndTime() {
+
+		setCompletionDate(Date.valueOf(LocalDate.now()));
+		setCompletionTime(Time.valueOf(LocalTime.now()));
+	}
+	
+	public void calculateMainResult() {
+		
+		
 	}
 
 }
