@@ -1,4 +1,0 @@
-
-<%
-	response.sendRedirect("inspection/list");
-%>
