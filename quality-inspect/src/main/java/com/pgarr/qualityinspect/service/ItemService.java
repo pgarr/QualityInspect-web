@@ -6,10 +6,10 @@ import com.pgarr.qualityinspect.entity.Item;
 
 public interface ItemService {
 
-	List<Item> getItems();
+	public List<Item> getItems();
 
-	Item getItem(int itemId);
+	public Item getItem(int itemId);
 
-	void saveItem(Item item);
+	public void saveItem(Item item);
 
 }

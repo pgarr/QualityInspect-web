@@ -2,6 +2,8 @@ package com.pgarr.qualityinspect.entity;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,7 +39,7 @@ public class Inspection {
 	private Time creationTime;
 
 	@Column(name = "completion_date")
-	private Date competionDate;
+	private Date completionDate;
 
 	@Column(name = "completion_time")
 	private Time completionTime;
@@ -63,21 +65,21 @@ public class Inspection {
 	private Form form;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "result_id")
+	@JoinColumn(name = "inspection_id")
 	private List<Result> results;
 
 	public Inspection() {
 
 	}
 
-	public Inspection(int id, String serialNumber, Date creationDate, Time creationTime, Date competionDate,
+	public Inspection(int id, String serialNumber, Date creationDate, Time creationTime, Date completionDate,
 			Time completionTime, String inspector, String place, int batch, int mainResult, boolean completed) {
 		super();
 		this.id = id;
 		this.serialNumber = serialNumber;
 		this.creationDate = creationDate;
 		this.creationTime = creationTime;
-		this.competionDate = competionDate;
+		this.completionDate = completionDate;
 		this.completionTime = completionTime;
 		this.inspector = inspector;
 		this.place = place;
@@ -118,12 +120,12 @@ public class Inspection {
 		this.creationTime = creationTime;
 	}
 
-	public Date getCompetionDate() {
-		return competionDate;
+	public Date getCompletionDate() {
+		return completionDate;
 	}
 
-	public void setCompetionDate(Date competionDate) {
-		this.competionDate = competionDate;
+	public void setCompletionDate(Date competionDate) {
+		this.completionDate = competionDate;
 	}
 
 	public Time getCompletionTime() {
@@ -193,10 +195,21 @@ public class Inspection {
 	@Override
 	public String toString() {
 		return "Inspection [id=" + id + ", serialNumber=" + serialNumber + ", creationDate=" + creationDate
-				+ ", creationTime=" + creationTime + ", competionDate=" + competionDate + ", completionTime="
+				+ ", creationTime=" + creationTime + ", completionDate=" + completionDate + ", completionTime="
 				+ completionTime + ", inspector=" + inspector + ", place=" + place + ", batch=" + batch
 				+ ", mainResult=" + mainResult + ", completed=" + completed + ", form=" + form + ", results=" + results
 				+ "]";
+	}
+
+	public void updateDateAndTime() {
+
+		setCompletionDate(Date.valueOf(LocalDate.now()));
+		setCompletionTime(Time.valueOf(LocalTime.now()));
+	}
+	
+	public void calculateMainResult() {
+		
+		
 	}
 
 }
