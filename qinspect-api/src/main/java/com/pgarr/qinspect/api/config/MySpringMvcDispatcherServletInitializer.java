@@ -1,4 +1,4 @@
-package com.pgarr.qinspect.rest.config;
+package com.pgarr.qinspect.api.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -12,7 +12,7 @@ public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationC
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { QInspectAppConfig.class };
+		return new Class[] { QInspectApiConfig.class };
 	}
 
 	@Override
