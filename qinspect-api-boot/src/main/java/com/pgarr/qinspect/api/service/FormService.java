@@ -1,10 +1,10 @@
-package com.pgarr.qinspect.api.dao;
+package com.pgarr.qinspect.api.service;
 
 import java.util.List;
 
 import com.pgarr.qinspect.api.entity.Form;
 
-public interface FormDAO {
+public interface FormService {
 
 	public List<Form> getForms();
 
@@ -12,4 +12,7 @@ public interface FormDAO {
 
 	public void saveForm(Form form);
 
+	public void archiveForm(int id);
+
+    List<Form> getItemForms(int itemId);
 }

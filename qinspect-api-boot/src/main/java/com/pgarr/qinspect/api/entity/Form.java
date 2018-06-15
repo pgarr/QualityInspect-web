@@ -32,6 +32,9 @@ public class Form {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "archived")
+    private boolean archived;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
             CascadeType.REFRESH})
     @JoinColumn(name = "item_id")
@@ -44,9 +47,10 @@ public class Form {
     public Form() {
     }
 
-    public Form(@NotBlank String name, String description, Item item, List<Step> steps) {
+    public Form(@NotBlank String name, String description, Boolean archived, Item item, List<Step> steps) {
         this.name = name;
         this.description = description;
+        this.archived = archived;
         this.item = item;
         this.steps = steps;
     }
@@ -73,6 +77,14 @@ public class Form {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 
     public Item getItem() {

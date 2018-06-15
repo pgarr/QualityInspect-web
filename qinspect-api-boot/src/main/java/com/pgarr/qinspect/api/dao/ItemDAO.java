@@ -6,12 +6,10 @@ import com.pgarr.qinspect.api.entity.Item;
 
 public interface ItemDAO {
 
-	public List<Item> getItems();
+    public List<Item> getItems();
 
-	public Item getItem(int id);
+    public Item getItem(int id);
 
-	public Item getItemWithForms(int id);
-
-	public void saveItem(Item item);
+    public void saveItem(Item item);
 
 }
