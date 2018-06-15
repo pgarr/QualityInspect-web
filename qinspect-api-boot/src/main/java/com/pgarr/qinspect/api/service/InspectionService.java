@@ -8,10 +8,10 @@ public interface InspectionService {
 
 	public List<Inspection> getInspections();
 
-	public Inspection getInspection(int id);
+	public Inspection getInspection(long id);
 
 	public void saveInspection(Inspection inspection);
 
-	public void deleteInspection(int id);
+	public void deleteInspection(long id);
 
 }

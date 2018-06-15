@@ -1,6 +1,6 @@
 package com.pgarr.qinspect.api.service;
 
-import com.pgarr.qinspect.api.dao.ItemDAO;
+import com.pgarr.qinspect.api.dao.ItemDao;
 import com.pgarr.qinspect.api.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,23 +12,23 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
-    private ItemDAO itemDAO;
+    private ItemDao itemDAO;
 
     @Override
     @Transactional
     public List<Item> getItems() {
-        return itemDAO.getItems();
+        return itemDAO.findAll();
     }
 
     @Override
     @Transactional
-    public Item getItem(int id) {
-        return itemDAO.getItem(id);
+    public Item getItem(long id) {
+        // requires lazy init
     }
 
     @Override
     @Transactional
     public void saveItem(Item item) {
-        itemDAO.saveItem(item);
+        itemDAO.save(item);
     }
 }

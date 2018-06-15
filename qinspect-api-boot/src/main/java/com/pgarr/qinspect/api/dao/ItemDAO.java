@@ -1,15 +1,8 @@
 package com.pgarr.qinspect.api.dao;
 
-import java.util.List;
-
 import com.pgarr.qinspect.api.entity.Item;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ItemDAO {
-
-    public List<Item> getItems();
-
-    public Item getItem(int id);
-
-    public void saveItem(Item item);
+public interface ItemDao extends CrudRepository<Item, Long> {
 
 }

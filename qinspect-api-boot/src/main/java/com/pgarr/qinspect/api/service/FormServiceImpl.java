@@ -1,7 +1,7 @@
 package com.pgarr.qinspect.api.service;
 
-import com.pgarr.qinspect.api.dao.FormDAO;
-import com.pgarr.qinspect.api.dao.ItemDAO;
+import com.pgarr.qinspect.api.dao.FormDao;
+import com.pgarr.qinspect.api.dao.ItemDao;
 import com.pgarr.qinspect.api.entity.Form;
 import com.pgarr.qinspect.api.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,40 +14,38 @@ import java.util.List;
 public class FormServiceImpl implements FormService {
 
     @Autowired
-    private FormDAO formDAO;
+    private FormDao formDAO;
 
     @Autowired
-    private ItemDAO itemDAO;
+    private ItemDao itemDAO;
 
     @Override
     @Transactional
     public List<Form> getForms() {
-        return formDAO.getForms();
+        return formDAO.findAll();
     }
 
     @Override
     @Transactional
-    public Form getForm(int id) {
-        return formDAO.getForm(id);
+    public Form getForm(long id) {
+        // requires lazy init
     }
 
     @Override
     @Transactional
     public void saveForm(Form form) {
-        formDAO.saveForm(form);
+        formDAO.save(form);
     }
 
     @Override
     @Transactional
-    public void archiveForm(int id) {
-        formDAO.archiveForm(id);
+    public void archiveForm(long id) {
+        // requires custom method with query
     }
 
     @Override
-    public List<Form> getItemForms(int itemId) {
+    public List<Form> getItemForms(long itemId) {
 
-        Item item = itemDAO.getItem(itemId);
-
-        return formDAO.getItemForms(item);
+        // requires custom method with query
     }
 }

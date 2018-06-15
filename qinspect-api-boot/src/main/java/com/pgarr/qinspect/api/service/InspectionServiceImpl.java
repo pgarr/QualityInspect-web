@@ -1,6 +1,6 @@
 package com.pgarr.qinspect.api.service;
 
-import com.pgarr.qinspect.api.dao.InspectionDAO;
+import com.pgarr.qinspect.api.dao.InspectionDao;
 import com.pgarr.qinspect.api.entity.Inspection;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,29 +10,29 @@ import java.util.List;
 public class InspectionServiceImpl implements InspectionService {
 
     @Autowired
-    private InspectionDAO inspectionDAO;
+    private InspectionDao inspectionDAO;
 
     @Override
     @Transactional
     public List<Inspection> getInspections() {
-        return inspectionDAO.getInspections();
+        return inspectionDAO.findAll();
     }
 
     @Override
     @Transactional
-    public Inspection getInspection(int id) {
-        return inspectionDAO.getInspection(id);
+    public Inspection getInspection(long id) {
+        // requires lazy init
     }
 
     @Override
     @Transactional
     public void saveInspection(Inspection inspection) {
-        inspectionDAO.saveInspection(inspection);
+        inspectionDAO.save(inspection);
     }
 
     @Override
     @Transactional
-    public void deleteInspection(int id) {
-        inspectionDAO.deleteInspection(id);
+    public void deleteInspection(long id) {
+        inspectionDAO.deleteById(id);
     }
 }

@@ -8,11 +8,11 @@ public interface FormService {
 
 	public List<Form> getForms();
 
-	public Form getForm(int id);
+	public Form getForm(long id);
 
 	public void saveForm(Form form);
 
-	public void archiveForm(int id);
+	public void archiveForm(long id);
 
-    List<Form> getItemForms(int itemId);
+    List<Form> getItemForms(long itemId);
 }
