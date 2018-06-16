@@ -4,7 +4,6 @@ import com.pgarr.qinspect.api.dao.FormDao;
 import com.pgarr.qinspect.api.entity.Form;
 import com.pgarr.qinspect.api.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,13 +14,13 @@ import java.util.List;
 public class FormServiceImpl implements FormService {
 
     @Autowired
-    private FormDao formDAO;
+    private FormDao formDao;
 
     @Override
     @Transactional
     public List<Form> getAllForms() {
 
-        Iterable<Form> iterable = formDAO.findAll();
+        Iterable<Form> iterable = formDao.findAll();
 
         List<Form> forms = new ArrayList<>();
         iterable.forEach(forms::add);
@@ -31,15 +30,14 @@ public class FormServiceImpl implements FormService {
 
     @Override
     @Transactional
-    public List<Form> getActiveForms() {
-        return formDAO.findByArchivedFalse();
+    public List<Form> getAllActiveForms() {
+        return formDao.findByArchivedFalse();
     }
 
     @Override
     @Transactional
-    @EntityGraph(attributePaths = {"steps"})
     public Form getForm(long id) {
-        return formDAO.findById(id)
+        return formDao.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Item", "id", id));
 
     }
@@ -47,7 +45,7 @@ public class FormServiceImpl implements FormService {
     @Override
     @Transactional
     public void saveForm(Form form) {
-        formDAO.save(form);
+        formDao.save(form);
     }
 
     @Override
@@ -60,7 +58,7 @@ public class FormServiceImpl implements FormService {
     @Transactional
     public List<Form> getActiveItemForms(long itemId) {
 
-        return formDAO.findByArchivedFalseAndItem_Id(itemId);
+        return formDao.findByArchivedFalseAndItem_Id(itemId);
 
     }
 }

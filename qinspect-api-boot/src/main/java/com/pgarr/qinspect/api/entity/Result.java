@@ -13,7 +13,7 @@ public class Result {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Enumerated
     @Column(name = "result", columnDefinition = "smallint")
@@ -42,11 +42,11 @@ public class Result {
         this.faultPictures = faultPictures;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

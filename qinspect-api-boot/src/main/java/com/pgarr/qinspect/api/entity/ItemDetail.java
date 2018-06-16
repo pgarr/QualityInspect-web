@@ -16,7 +16,7 @@ public class ItemDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name = "maker")
     private String maker;
@@ -30,17 +30,16 @@ public class ItemDetail {
     public ItemDetail() {
     }
 
-    public ItemDetail(String maker, String description, Item item) {
+    public ItemDetail(String maker, String description) {
         this.maker = maker;
         this.description = description;
-        this.item = item;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -74,7 +73,7 @@ public class ItemDetail {
                 "id=" + id +
                 ", maker='" + maker + '\'' +
                 ", description='" + description + '\'' +
-                ", item=" + item +
                 '}';
     }
+
 }

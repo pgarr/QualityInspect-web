@@ -10,7 +10,7 @@ public interface FormService {
 
     List<Form> getAllForms();
 
-    List<Form> getActiveForms();
+    List<Form> getAllActiveForms();
 
     Form getForm(long id);
 

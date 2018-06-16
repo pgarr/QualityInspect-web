@@ -23,7 +23,7 @@ public class Inspection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name = "serial_number")
     @NotBlank
@@ -77,15 +77,13 @@ public class Inspection {
         this.batch = batch;
         this.mainResult = mainResult;
         this.completed = completed;
-        this.form = form;
-        this.results = results;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -181,8 +179,6 @@ public class Inspection {
                 ", batch=" + batch +
                 ", mainResult=" + mainResult +
                 ", completed=" + completed +
-                ", form=" + form +
-                ", results=" + results +
                 '}';
     }
 }

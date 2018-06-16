@@ -8,32 +8,25 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class InspectionServiceImpl implements InspectionService {
 
     @Autowired
-    private InspectionDao inspectionDAO;
+    private InspectionDao inspectionDao;
 
     @Override
     @Transactional
     public List<Inspection> getInspections() {
-
-        Iterable<Inspection> iterable = inspectionDAO.findAll();
-
-        List<Inspection> inspections = new ArrayList<>();
-        iterable.forEach(inspections::add);
-
-        return inspections;
+        return inspectionDao.findAll();
     }
 
     @Override
     @Transactional
     @EntityGraph(attributePaths = {"results"})
     public Inspection getInspection(long id) {
-        return inspectionDAO.findById(id)
+        return inspectionDao.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Item", "id", id));
 
     }
@@ -41,12 +34,12 @@ public class InspectionServiceImpl implements InspectionService {
     @Override
     @Transactional
     public void saveInspection(Inspection inspection) {
-        inspectionDAO.save(inspection);
+        inspectionDao.save(inspection);
     }
 
     @Override
     @Transactional
     public void deleteInspection(long id) {
-        inspectionDAO.deleteById(id);
+        inspectionDao.deleteById(id);
     }
 }

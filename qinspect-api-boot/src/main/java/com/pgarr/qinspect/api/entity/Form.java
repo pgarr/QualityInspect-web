@@ -1,5 +1,6 @@
 package com.pgarr.qinspect.api.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ public class Form {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name = "name")
     @NotBlank
@@ -47,19 +48,17 @@ public class Form {
     public Form() {
     }
 
-    public Form(@NotBlank String name, String description, Boolean archived, Item item, List<Step> steps) {
+    public Form(@NotBlank String name, String description, Boolean archived) {
         this.name = name;
         this.description = description;
         this.archived = archived;
-        this.item = item;
-        this.steps = steps;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -103,14 +102,18 @@ public class Form {
         this.steps = steps;
     }
 
+    public void addStep(Step step) {
+        if (steps == null)
+            steps = new ArrayList<Step>();
+        steps.add(step);
+    }
+
     @Override
     public String toString() {
         return "Form{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", item=" + item +
-                ", steps=" + steps +
                 '}';
     }
 }

@@ -7,37 +7,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
-    private ItemDao itemDAO;
+    private ItemDao itemDao;
 
     @Override
     @Transactional
     public List<Item> getItems() {
-
-        Iterable<Item> iterable = itemDAO.findAll();
-
-        List<Item> items = new ArrayList<>();
-        iterable.forEach(items::add);
-
-        return items;
+        return itemDao.findAll();
     }
 
     @Override
     @Transactional
     public Item getItem(long id) {
-        return itemDAO.findById(id)
+        return itemDao.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Item", "id", id));
     }
 
     @Override
     @Transactional
     public void saveItem(Item item) {
-        itemDAO.save(item);
+        itemDao.save(item);
     }
 }
