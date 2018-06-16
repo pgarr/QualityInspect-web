@@ -67,7 +67,8 @@ public class Inspection {
     public Inspection() {
     }
 
-    public Inspection(@NotBlank String serialNumber, Date createdAt, Date updatedAt, String inspector, String place, int batch, ResultType mainResult, boolean completed, Form form, List<Result> results) {
+    public Inspection(@NotBlank String serialNumber, Date createdAt, Date updatedAt, String inspector, String place,
+                      int batch, ResultType mainResult, boolean completed, Form form, List<Result> results) {
         this.serialNumber = serialNumber;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;

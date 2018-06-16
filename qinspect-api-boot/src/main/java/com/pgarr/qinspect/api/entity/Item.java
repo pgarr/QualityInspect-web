@@ -15,7 +15,7 @@ public class Item {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     @NotBlank
     private String name;
 

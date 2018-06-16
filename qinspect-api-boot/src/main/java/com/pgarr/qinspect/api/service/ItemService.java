@@ -6,10 +6,10 @@ import com.pgarr.qinspect.api.entity.Item;
 
 public interface ItemService {
 
-    public List<Item> getItems();
+    List<Item> getItems();
 
-    public Item getItem(long id);
+    Item getItem(long id);
 
-    public void saveItem(Item item);
+    void saveItem(Item item);
 
 }

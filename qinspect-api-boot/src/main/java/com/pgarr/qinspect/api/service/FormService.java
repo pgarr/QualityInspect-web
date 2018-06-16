@@ -4,15 +4,19 @@ import java.util.List;
 
 import com.pgarr.qinspect.api.entity.Form;
 
+import javax.transaction.Transactional;
+
 public interface FormService {
 
-	public List<Form> getForms();
+    List<Form> getAllForms();
 
-	public Form getForm(long id);
+    List<Form> getActiveForms();
 
-	public void saveForm(Form form);
+    Form getForm(long id);
 
-	public void archiveForm(long id);
+    void saveForm(Form form);
 
-    List<Form> getItemForms(long itemId);
+    void archiveForm(long id);
+
+    List<Form> getActiveItemForms(long itemId);
 }

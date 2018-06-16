@@ -6,12 +6,12 @@ import com.pgarr.qinspect.api.entity.Inspection;
 
 public interface InspectionService {
 
-	public List<Inspection> getInspections();
+	List<Inspection> getInspections();
 
-	public Inspection getInspection(long id);
+	Inspection getInspection(long id);
 
-	public void saveInspection(Inspection inspection);
+	void saveInspection(Inspection inspection);
 
-	public void deleteInspection(long id);
+	void deleteInspection(long id);
 
 }

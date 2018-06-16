@@ -23,7 +23,7 @@ public class FormRestController {
 
     @GetMapping("/forms")
     public List<Form> getForms() {
-        return formService.getForms();
+        return formService.getAllForms();
     }
 
     @GetMapping("/forms/{id}")
@@ -33,7 +33,7 @@ public class FormRestController {
 
     @GetMapping("/forms/item/{itemId}")
     public List<Form> getItemForms(@PathVariable int itemId) {
-        return formService.getItemForms(itemId);
+        return formService.getActiveItemForms(itemId);
     }
 
     @PostMapping("/forms")
