@@ -22,6 +22,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
@@ -39,7 +41,6 @@ public class ItemServiceImplTest {
             return new ItemServiceImpl();
         }
     }
-
 
     @Autowired
     private ItemService itemService;
@@ -127,6 +128,21 @@ public class ItemServiceImplTest {
         itemService.saveItem(mockedItem1);
 
         verify(itemDao, Mockito.times(1)).save(mockedItem1);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testSaveItem_WhenNullArgument_ThenThrowNullArgumentPassedException() {
+
+        itemService.saveItem(null);
+
+        verify(itemDao, Mockito.times(0)).save(any(Item.class));
+    }
+
+    @Test
+    public void testSaveItem_WhenItemLacksRequiredFields() {
+    // expected some exception
+    // dont call itemDao.save
+        fail();
     }
 }
 

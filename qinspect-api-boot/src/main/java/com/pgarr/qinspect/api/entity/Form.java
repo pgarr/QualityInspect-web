@@ -1,7 +1,9 @@
 package com.pgarr.qinspect.api.entity;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -102,12 +104,6 @@ public class Form {
         this.steps = steps;
     }
 
-    public void addStep(Step step) {
-        if (steps == null)
-            steps = new ArrayList<Step>();
-        steps.add(step);
-    }
-
     @Override
     public String toString() {
         return "Form{" +
@@ -115,5 +111,21 @@ public class Form {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public void addStep(Step step) {
+        if (steps == null)
+            steps = new ArrayList<>();
+        steps.add(step);
+    }
+
+
+    public void sortSteps() {
+
+        if (steps != null)
+            steps = steps
+                    .stream()
+                    .sorted(Comparator.comparingInt(Step::getNumber))
+                    .collect(Collectors.toList());
     }
 }

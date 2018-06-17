@@ -24,6 +24,7 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
@@ -223,12 +224,19 @@ public class FormServiceImplTest {
         verify(formDao, Mockito.times(1)).save(mockedForm1);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testSaveForm_WhenNullArgument_ThenThrowNullArgumentPassedException() {
+
+        formService.saveForm(null);
+
+        verify(formDao, Mockito.times(0)).save(any(Form.class));
+    }
+
     @Test
     public void testArchiveForm_FormDaoArchiveCalled() {
         formService.archiveForm(1L);
 
-        fail();
-//      verify(formDao, Mockito.times(1)).  need custom method in formDao to set archive = true
+        verify(formDao, Mockito.times(1)).archiveThis(1L);
     }
 
     @Test
@@ -259,6 +267,13 @@ public class FormServiceImplTest {
         List<Form> actualActiveForms = formService.getActiveItemForms(3L);
 
         assertEquals(0, actualActiveForms.size());
+    }
+
+    @Test
+    public void testSaveForm_WhenFormLacksRequiredFields() {
+        // expected some exception
+        // dont call formDao.save
+        fail();
     }
 
 }

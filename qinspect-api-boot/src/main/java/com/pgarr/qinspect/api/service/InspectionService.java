@@ -6,7 +6,7 @@ import com.pgarr.qinspect.api.entity.Inspection;
 
 public interface InspectionService {
 
-	List<Inspection> getInspections();
+	List<Inspection> getAllInspections();
 
 	Inspection getInspection(long id);
 

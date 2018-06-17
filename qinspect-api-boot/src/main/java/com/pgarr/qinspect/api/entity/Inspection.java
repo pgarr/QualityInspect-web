@@ -1,13 +1,16 @@
 package com.pgarr.qinspect.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.pgarr.qinspect.api.enums.ResultType;
+import com.pgarr.qinspect.api.entity.enums.ResultType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -68,7 +71,7 @@ public class Inspection {
     }
 
     public Inspection(@NotBlank String serialNumber, Date createdAt, Date updatedAt, String inspector, String place,
-                      int batch, ResultType mainResult, boolean completed, Form form, List<Result> results) {
+                      int batch, ResultType mainResult, boolean completed) {
         this.serialNumber = serialNumber;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -180,5 +183,20 @@ public class Inspection {
                 ", mainResult=" + mainResult +
                 ", completed=" + completed +
                 '}';
+    }
+
+    public void addResult(Result result) {
+        if (results == null)
+            results = new ArrayList<>();
+        results.add(result);
+    }
+
+    public void sortResults() {
+
+        if (results != null)
+        results = results
+                .stream()
+                .sorted(Comparator.comparingInt(result -> result.getStep().getNumber()))
+                .collect(Collectors.toList());
     }
 }

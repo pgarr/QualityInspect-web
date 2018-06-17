@@ -31,6 +31,8 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @Transactional
     public void saveItem(Item item) {
+        if(item!=null)
         itemDao.save(item);
+        else throw new NullPointerException("Cannot save Item - it's null!");
     }
 }

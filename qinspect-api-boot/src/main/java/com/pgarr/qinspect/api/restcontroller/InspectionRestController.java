@@ -24,7 +24,7 @@ public class InspectionRestController {
 
     @GetMapping("/inspections")
     public List<Inspection> getInspections() {
-        return inspectionService.getInspections();
+        return inspectionService.getAllInspections();
     }
 
     @GetMapping("/inspections/{id}")

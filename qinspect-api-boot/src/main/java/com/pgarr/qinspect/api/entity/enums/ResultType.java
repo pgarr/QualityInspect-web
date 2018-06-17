@@ -1,4 +1,4 @@
-package com.pgarr.qinspect.api.enums;
+package com.pgarr.qinspect.api.entity.enums;
 
 public enum ResultType {
     BLANK,

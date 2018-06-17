@@ -16,4 +16,7 @@ public interface FormDao extends JpaRepository<Form, Long> {
     @Override
     @EntityGraph(attributePaths = {"steps"})
     Optional<Form> findById(Long aLong);
+
+    // this method needs proper name to query setArchived to true
+    void archiveThis(long id);
 }

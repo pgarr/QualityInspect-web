@@ -4,7 +4,6 @@ import com.pgarr.qinspect.api.dao.InspectionDao;
 import com.pgarr.qinspect.api.entity.Inspection;
 import com.pgarr.qinspect.api.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,23 +17,27 @@ public class InspectionServiceImpl implements InspectionService {
 
     @Override
     @Transactional
-    public List<Inspection> getInspections() {
+    public List<Inspection> getAllInspections() {
         return inspectionDao.findAll();
     }
 
     @Override
     @Transactional
-    @EntityGraph(attributePaths = {"results"})
     public Inspection getInspection(long id) {
-        return inspectionDao.findById(id)
+        Inspection inspection = inspectionDao.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Item", "id", id));
 
+        inspection.sortResults();
+
+        return inspection;
     }
 
     @Override
     @Transactional
     public void saveInspection(Inspection inspection) {
+        if(inspection != null)
         inspectionDao.save(inspection);
+        else throw new NullPointerException("Cannot save Inspection - it's null!");
     }
 
     @Override

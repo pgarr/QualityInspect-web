@@ -37,21 +37,27 @@ public class FormServiceImpl implements FormService {
     @Override
     @Transactional
     public Form getForm(long id) {
-        return formDao.findById(id)
+        Form form = formDao.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Item", "id", id));
 
+        form.sortSteps();
+
+        return form;
     }
 
     @Override
     @Transactional
     public void saveForm(Form form) {
-        formDao.save(form);
+        if (form != null)
+            formDao.save(form);
+        else
+            throw new NullPointerException("Cannot save Form - it's null!");
     }
 
     @Override
     @Transactional
     public void archiveForm(long id) {
-        // requires custom method with query
+        formDao.archiveThis(id);
     }
 
     @Override

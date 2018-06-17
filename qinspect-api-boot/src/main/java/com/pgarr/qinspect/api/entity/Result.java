@@ -1,6 +1,6 @@
 package com.pgarr.qinspect.api.entity;
 
-import com.pgarr.qinspect.api.enums.ResultType;
+import com.pgarr.qinspect.api.entity.enums.ResultType;
 
 import java.util.List;
 
@@ -35,11 +35,9 @@ public class Result {
 
     }
 
-    public Result(ResultType result, String note, Step step, List<FaultPicture> faultPictures) {
+    public Result(ResultType result, String note) {
         this.result = result;
         this.note = note;
-        this.step = step;
-        this.faultPictures = faultPictures;
     }
 
     public long getId() {
