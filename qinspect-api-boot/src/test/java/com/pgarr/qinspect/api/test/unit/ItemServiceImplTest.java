@@ -27,9 +27,9 @@ import static org.mockito.Mockito.verify;
 @RunWith(SpringRunner.class)
 public class ItemServiceImplTest {
 
-    private static Item testItem1;
-    private static Item testItem2;
-    private static List<Item> items;
+    private static Item mockedItem1;
+    private static Item mockedItem2;
+    private static List<Item> mockedItems;
 
     @TestConfiguration
     static class ItemServiceImplTestContextConfiguration {
@@ -49,40 +49,39 @@ public class ItemServiceImplTest {
 
     @BeforeClass
     public static void setUp() {
-        ItemDetail testItemDetail1 = new ItemDetail("ACME", "Test Detail 1");
-        testItem1 = new Item("Test item 1", testItemDetail1);
-        testItem1.setId(1L);
+        ItemDetail mockedItemDetail1 = new ItemDetail("ACME", "Test Detail 1");
+        mockedItem1 = new Item("Test item 1", mockedItemDetail1);
+        mockedItem1.setId(1L);
 
-        ItemDetail testItemDetail2 = new ItemDetail("ACME", "Test Detail 2");
-        testItem2 = new Item("Test item 2", testItemDetail2);
-        testItem2.setId(2L);
+        ItemDetail mockedItemDetail2 = new ItemDetail("ACME", "Test Detail 2");
+        mockedItem2 = new Item("Test item 2", mockedItemDetail2);
+        mockedItem2.setId(2L);
 
-        items = new ArrayList<>();
-        items.add(testItem1);
-        items.add(testItem2);
+        mockedItems = new ArrayList<>();
+        mockedItems.add(mockedItem1);
+        mockedItems.add(mockedItem2);
     }
 
     @Test
     public void testGetItem_whenValidId1_ThenReturnItem1() {
 
-        Mockito.when(itemDao.findById(testItem1.getId()))
-                .thenReturn(Optional.of(testItem1));
+        Mockito.when(itemDao.findById(mockedItem1.getId()))
+                .thenReturn(Optional.of(mockedItem1));
 
-        ItemDetail testItemDetail1 = new ItemDetail("ACME", "Test Detail 1");
-        Item testItem1 = new Item("Test item 1", testItemDetail1);
-        testItem1.setId(1L);
+        ItemDetail expectedItemDetail = new ItemDetail("ACME", "Test Detail 1");
+        Item expectedItem = new Item("Test item 1", expectedItemDetail);
+        expectedItem.setId(1L);
 
         // when
         Item foundItem = itemService.getItem(1L);
 
         // then
         assertThat(foundItem.getName())
-                .isEqualTo(testItem1.getName());
+                .isEqualTo(expectedItem.getName());
         assertThat(foundItem.getItemDetail().getMaker())
-                .isEqualTo(testItem1.getItemDetail().getMaker());
+                .isEqualTo(expectedItem.getItemDetail().getMaker());
         assertThat(foundItem.getItemDetail().getDescription())
-                .isEqualTo(testItem1.getItemDetail().getDescription());
-
+                .isEqualTo(expectedItem.getItemDetail().getDescription());
     }
 
     @Test(expected = ResourceNotFoundException.class)
@@ -98,17 +97,17 @@ public class ItemServiceImplTest {
     public void testGetItems_ReturnListOfItems() {
 
         Mockito.when(itemDao.findAll())
-                .thenReturn(items);
+                .thenReturn(mockedItems);
 
-        List<Item> expected = new ArrayList<>();
-        expected.add(testItem1);
-        expected.add(testItem2);
+        List<Item> expectedItems = new ArrayList<>();
+        expectedItems.add(mockedItem1);
+        expectedItems.add(mockedItem2);
 
-        List<Item> actual = itemService.getItems();
+        List<Item> actualItems = itemService.getItems();
 
-        assertEquals(expected.size(), actual.size());
-        assertEquals(expected.get(0).getName(), actual.get(0).getName());
-        assertEquals(expected.get(1).getItemDetail().getMaker(), actual.get(1).getItemDetail().getMaker());
+        assertEquals(expectedItems.size(), actualItems.size());
+        assertEquals(expectedItems.get(0).getName(), actualItems.get(0).getName());
+        assertEquals(expectedItems.get(1).getItemDetail().getMaker(), actualItems.get(1).getItemDetail().getMaker());
     }
 
     @Test
@@ -117,19 +116,17 @@ public class ItemServiceImplTest {
         Mockito.when(itemDao.findAll())
                 .thenReturn(new ArrayList<>());
 
-        List<Item> actual = itemService.getItems();
+        List<Item> actualItems = itemService.getItems();
 
-        assertEquals(0, actual.size());
-
+        assertEquals(0, actualItems.size());
     }
 
     @Test
-    public void testSaveItem_ItemDAOSaveCalled() {
+    public void testSaveItem_ItemDaoSaveCalled() {
 
-        itemService.saveItem(testItem1);
+        itemService.saveItem(mockedItem1);
 
-        verify(itemDao, Mockito.times(1)).save(testItem1);
+        verify(itemDao, Mockito.times(1)).save(mockedItem1);
     }
-
-
 }
+
