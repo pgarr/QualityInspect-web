@@ -35,7 +35,7 @@ public class FormTest {
     }
 
     @Test
-    public void TestAddStep_WhenStepsAreNull_CreateNewArrayListAndAddStep() {
+    public void testAddStep_WhenStepsAreNull_CreateNewArrayListAndAddStep() {
 
         testForm.addStep(testStep1);
 
@@ -44,7 +44,7 @@ public class FormTest {
     }
 
     @Test
-    public void TestAddStep_WhenStepsAreEmpty_AddStepToList() {
+    public void testAddStep_WhenStepsAreEmpty_AddStepToList() {
 
         testForm.setSteps(testSteps);
 
@@ -56,7 +56,7 @@ public class FormTest {
     }
 
     @Test
-    public void TestAddStep_WhenThereAreSteps_AddStepToList() {
+    public void testAddStep_WhenThereAreSteps_AddStepToList() {
 
         testSteps.add(testStep1);
         testForm.setSteps(testSteps);
@@ -69,7 +69,7 @@ public class FormTest {
     }
 
     @Test
-    public void TestSortSteps_WhenStepsAreNotSorted_SortThemByFieldNumber() {
+    public void testSortSteps_WhenStepsAreNotSorted_SortThemByFieldNumber() {
 
         testSteps.add(testStep2);
         testSteps.add(testStep3);
@@ -86,7 +86,7 @@ public class FormTest {
     }
 
     @Test
-    public void TestSortSteps_WhenStepsAreSorted() {
+    public void testSortSteps_WhenStepsAreSorted() {
 
         testSteps.add(testStep1);
         testSteps.add(testStep2);
@@ -103,7 +103,7 @@ public class FormTest {
     }
 
     @Test
-    public void TestSortSteps_WhenThereIsOnlyOneStep() {
+    public void testSortSteps_WhenThereIsOnlyOneStep() {
 
         testSteps.add(testStep1);
 
@@ -116,7 +116,7 @@ public class FormTest {
     }
 
     @Test
-    public void TestSortSteps_WhenStepsAreEmpty() {
+    public void testSortSteps_WhenStepsAreEmpty() {
 
         testForm.setSteps(testSteps);
 
@@ -126,7 +126,7 @@ public class FormTest {
     }
 
     @Test
-    public void TestSortSteps_WhenStepsAreNull () {
+    public void testSortSteps_WhenStepsAreNull () {
 
         testForm.sortSteps();
     }

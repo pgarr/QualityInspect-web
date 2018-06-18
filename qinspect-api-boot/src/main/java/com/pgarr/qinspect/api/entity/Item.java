@@ -1,5 +1,6 @@
 package com.pgarr.qinspect.api.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -73,5 +74,12 @@ public class Item {
                 ", name='" + name + '\'' +
                 ", itemDetail=" + itemDetail +
                 '}';
+    }
+
+    public void addForm(Form form) {
+
+        if (forms == null)
+            forms = new ArrayList<>();
+        forms.add(form);
     }
 }

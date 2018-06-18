@@ -57,7 +57,7 @@ public class FormServiceImpl implements FormService {
     @Override
     @Transactional
     public void archiveForm(long id) {
-        formDao.archiveThis(id);
+        formDao.updateArchivedFor(true, id);
     }
 
     @Override
