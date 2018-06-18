@@ -236,7 +236,7 @@ public class FormServiceImplTest {
     public void testArchiveForm_FormDaoArchiveCalled() {
         formService.archiveForm(1L);
 
-        verify(formDao, Mockito.times(1)).updateArchivedFor(true, 1L);
+        verify(formDao, Mockito.times(1)).setFixedArchivedFor(true, 1L);
     }
 
     @Test

@@ -110,6 +110,9 @@ public class Form {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", archived=" + archived +
+                ", item=" + item +
+                ", steps=" + steps +
                 '}';
     }
 

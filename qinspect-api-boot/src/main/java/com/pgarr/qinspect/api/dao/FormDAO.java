@@ -20,7 +20,7 @@ public interface FormDao extends JpaRepository<Form, Long> {
     Optional<Form> findById(Long aLong);
 
     // this method needs proper name to query setArchived to true
-    @Modifying
-    @Query("update Form f set f.archived =?1 where f.id = ?2")
-    void updateArchivedFor(boolean archived, long id);
+    @Modifying(clearAutomatically = true)
+    @Query("update Form f set f.archived = ?1 where f.id = ?2")
+    void setFixedArchivedFor(boolean archived, long id);
 }

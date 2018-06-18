@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "step")
@@ -25,13 +26,13 @@ public class Step {
     private String details;
 
     @Column(name = "number")
-    @NotBlank
+    @NotNull
     private int number;
 
     public Step() {
     }
 
-    public Step(@NotBlank String description, String details, @NotBlank int number) {
+    public Step(@NotBlank String description, String details, @NotNull int number) {
         this.description = description;
         this.details = details;
         this.number = number;
