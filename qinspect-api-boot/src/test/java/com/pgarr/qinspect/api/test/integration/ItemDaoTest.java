@@ -38,7 +38,6 @@ public class ItemDaoTest {
         entityManager.flush();
     }
 
-
     //    This is just to check, how JPA handle eager fetching. Don't really have to test default methods from framework
     @Test
     public void testFindById_GetItemWithItemDetail() {
